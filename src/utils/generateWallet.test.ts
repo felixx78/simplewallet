@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import { describe, it, expect } from "@jest/globals";
 
 describe("generateWallet", () => {
-  it("eth test", () => {
+  it("eth & bnb chain test", () => {
     const derivePath = "m/44'/60'/0'/0/0";
     const mnemonic = bip39.generateMnemonic();
 
