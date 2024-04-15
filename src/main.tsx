@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import "typeface-inter";
 
 const queryClient = new QueryClient();
 
