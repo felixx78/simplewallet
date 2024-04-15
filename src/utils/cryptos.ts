@@ -17,7 +17,7 @@ const cryptos: CryptoType[] = [
   {
     name: "USDT",
     contactAddress: "0xdac17f958d2ee523a2206206994597c13d831ec7",
-    network: "Etherium Mainnet",
+    network: "Ethereum Mainnet",
     tokenStandart: "erc-20",
     icon: "/usdt.svg",
   },

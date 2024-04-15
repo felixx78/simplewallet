@@ -7,7 +7,7 @@ export type Network = {
 
 const networks: Array<Network> = [
   {
-    name: "Etherium Mainnet",
+    name: "Ethereum Mainnet",
     derivePath: "m/44'/60'/0'/0/0",
     web3: "https://rpc.ankr.com/eth",
     icon: "/eth.jpg",
