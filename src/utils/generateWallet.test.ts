@@ -1,5 +1,5 @@
 import * as bip39 from "bip39";
-import generateWallet from "./generateWallett";
+import generateWallet from "./generateWallet";
 import { ethers } from "ethers";
 import { describe, it, expect } from "@jest/globals";
 
