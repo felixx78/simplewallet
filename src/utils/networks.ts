@@ -38,7 +38,7 @@ const getNetworks = async (seedPhrase: string) => {
   });
 
   networks.push({
-    name: "Ton",
+    name: "The Open Network",
     icon: "/ton.svg",
     address: tonWallet.address.toString(),
     publicKey: tonWallet.publicKey.toString(),
