@@ -1,7 +1,5 @@
 import Web3 from "web3";
 import { BigNumber } from "bignumber.js";
-import { CryptoType } from "./cryptos";
-import networks from "./networks";
 
 const ABI = [
   {
@@ -15,13 +13,15 @@ const ABI = [
   },
 ];
 
-const getBalance = async (data: CryptoType, address: string) => {
+const getBalance = async (
+  web3Api: string,
+  contactAddress: string,
+  address: string
+) => {
   try {
-    const network = networks.find((i) => i.name === data.network)!;
+    const web3 = new Web3(web3Api);
 
-    const web3 = new Web3(network.web3);
-
-    const contract = new web3.eth.Contract(ABI, data.contactAddress);
+    const contract = new web3.eth.Contract(ABI, contactAddress);
 
     const balance: any = await contract.methods.balanceOf(address).call();
 

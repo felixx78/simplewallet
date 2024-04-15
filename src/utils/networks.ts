@@ -1,23 +1,51 @@
+import generateWallet from "./generateWallet";
+import { mnemonicToWalletKey } from "@ton/crypto";
+import { WalletContractV4 } from "@ton/ton";
+
 export type Network = {
   name: string;
-  derivePath: string;
-  web3: string;
   icon: string;
+  address: string;
+  publicKey: string;
+  privateKey: string;
 };
 
-const networks: Array<Network> = [
-  {
-    name: "Ethereum Mainnet",
-    derivePath: "m/44'/60'/0'/0/0",
-    web3: "https://rpc.ankr.com/eth",
-    icon: "/eth.jpg",
-  },
-  {
-    name: "BNB Chain",
-    derivePath: "m/44'/60'/0'/0/0",
-    web3: "https://bsc-dataseed1.binance.org:443",
-    icon: "/bnb.svg",
-  },
-];
+const getNetworks = async (seedPhrase: string) => {
+  const networks: Array<Network> = [];
 
-export default networks;
+  const wallet = generateWallet(seedPhrase, "m/44'/60'/0'/0/0");
+
+  networks.push({
+    name: "Ethereum Mainnet",
+    icon: "/eth.jpg",
+    address: wallet.address,
+    publicKey: wallet.publicKey,
+    privateKey: wallet.privateKey,
+  });
+
+  networks.push({
+    name: "BNB Chain",
+    icon: "/bnb.svg",
+    address: wallet.address,
+    publicKey: wallet.publicKey,
+    privateKey: wallet.privateKey,
+  });
+
+  const tonKey = await mnemonicToWalletKey(seedPhrase.split(" "));
+  const tonWallet = WalletContractV4.create({
+    publicKey: tonKey.publicKey,
+    workchain: 0,
+  });
+
+  networks.push({
+    name: "Ton",
+    icon: "/ton.svg",
+    address: tonWallet.address.toString(),
+    publicKey: tonWallet.publicKey.toString(),
+    privateKey: wallet.privateKey.toString(),
+  });
+
+  return networks;
+};
+
+export default getNetworks;
