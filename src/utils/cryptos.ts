@@ -1,9 +1,10 @@
 import getBalance from "./getBalance";
+import getTonBalance from "./getTonBalance";
 
 export type CryptoType = {
   name: string;
   network: string;
-  tokenStandart: string;
+  tokenStandart?: string;
   icon: string;
   getBalance: (address: string) => string | Promise<string>;
 };
@@ -20,6 +21,12 @@ const cryptos: CryptoType[] = [
         "0x55d398326f99059ff775485246999027b3197955",
         address
       ),
+  },
+  {
+    name: "Ton",
+    network: "The Open Network",
+    icon: "/ton.svg",
+    getBalance: getTonBalance,
   },
   {
     name: "USDT",
