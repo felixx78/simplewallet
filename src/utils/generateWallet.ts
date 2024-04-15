@@ -21,13 +21,13 @@ function generateWallet(seedPhrase: string, derivePath: string) {
 
   const ecKey = ec.keyFromPublic(childNode.publicKey, "hex");
   const uncompressPublicKey = ecKey.getPublic().encode("hex", false).slice(2);
-  const adressUInt = keccak_256(Buffer.from(uncompressPublicKey, "hex")).slice(
+  const addressUInt = keccak_256(Buffer.from(uncompressPublicKey, "hex")).slice(
     -20
   );
-  const adress = "0x" + Buffer.from(adressUInt).toString("hex");
+  const address = "0x" + Buffer.from(addressUInt).toString("hex");
 
   return {
-    adress: adress,
+    address: address,
     publicKey,
     privateKey,
   };
