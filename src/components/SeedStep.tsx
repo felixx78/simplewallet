@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { useSeed } from "../contexts/SeedContext";
+import * as bip39 from "bip39";
 
 type Props = {
   onBack: () => void;
   onContinue: () => void;
+  generate?: boolean;
 };
 
-function SeedStep({ onBack, onContinue }: Props) {
+function SeedStep({ onBack, onContinue, generate = false }: Props) {
   const seed = useSeed();
 
   const [inputData, setInputData] = useState(
-    Array.from({ length: 12 }, () => "")
+    generate
+      ? bip39.generateMnemonic().split("")
+      : Array.from({ length: 12 }, () => "")
   );
 
   const handleOnChange = (v: string, index: number) => {
