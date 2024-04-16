@@ -1,10 +1,12 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useSeed } from "../contexts/SeedContext";
 
 function MainLayout() {
-  const seed = localStorage.getItem("seed");
+  const seed = useSeed();
   const location = useLocation();
 
-  if (!seed && location.pathname !== "/welcome") {
+  const ignorePaths = ["/welcome", "/wallet/import", "/wallet/create"];
+  if (!seed.seed && !ignorePaths.includes(location.pathname)) {
     return <Navigate to="/welcome" />;
   }
 
