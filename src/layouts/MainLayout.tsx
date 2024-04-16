@@ -5,8 +5,16 @@ function MainLayout() {
   const seed = useSeed();
   const location = useLocation();
 
-  const ignorePaths = ["/welcome", "/wallet/import", "/wallet/create"];
+  const ignorePaths = [
+    "/welcome",
+    "/wallet/import",
+    "/wallet/create",
+    "/login",
+  ];
   if (!seed.seed && !ignorePaths.includes(location.pathname)) {
+    if (localStorage.getItem("seed") && localStorage.getItem("password")) {
+      return <Navigate to="/login" />;
+    }
     return <Navigate to="/welcome" />;
   }
 
