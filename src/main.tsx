@@ -6,7 +6,6 @@ import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "typeface-inter";
 import { SeedProvider } from "./contexts/SeedContext.tsx";
-import "react-loading-skeleton/dist/skeleton.css";
 
 const queryClient = new QueryClient();
 
