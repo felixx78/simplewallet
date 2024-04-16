@@ -1,6 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 function MainLayout() {
+  const seed = localStorage.getItem("seed");
+
+  if (!seed) return <Navigate to="/auth" />;
+
   return (
     <main
       style={{ fontFamily: "'Inter', sans-serif" }}
