@@ -3,6 +3,7 @@ import Main from "./pages/Main";
 import MainLayout from "./layouts/MainLayout";
 import Welcome from "./pages/Welcome";
 import CreateAndImport from "./pages/CreateAndImport";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           path="/wallet/create"
           element={<CreateAndImport create={true} />}
         />
+        <Route path="/login" element={<Login />} />
         <Route index element={<Main />} />
       </Route>
     </Routes>
