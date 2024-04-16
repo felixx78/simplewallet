@@ -1,9 +1,12 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 function MainLayout() {
   const seed = localStorage.getItem("seed");
+  const location = useLocation();
 
-  if (!seed) return <Navigate to="/auth" />;
+  if (!seed && location.pathname !== "/auth") {
+    return <Navigate to="/auth" />;
+  }
 
   return (
     <main
