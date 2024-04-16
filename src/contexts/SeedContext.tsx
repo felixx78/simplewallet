@@ -4,7 +4,7 @@ import { decryptSeedPhrase } from "../utils/seed";
 
 type SeedContextType = {
   seed: string;
-  auth: (password: string) => void;
+  auth: (password: string) => boolean;
   setSeed: (seed: string) => void;
 };
 
@@ -18,7 +18,10 @@ export const SeedProvider = ({ children }: { children: React.ReactNode }) => {
 
     if (hashPassword(password) === encryptedPassword) {
       setSeed(decryptSeedPhrase(password));
+      return true;
     }
+
+    return false;
   };
 
   return (
