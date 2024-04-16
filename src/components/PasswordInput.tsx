@@ -22,6 +22,7 @@ function PasswordInput({ value, onChange, placeholder, error }: Props) {
           type={isHidden ? "password" : "text"}
         />
         <button
+          type="button"
           onClick={() => setIsHidden(!isHidden)}
           className="absolute right-4 top-1/2 -translate-y-1/2"
         >
