@@ -1,6 +1,6 @@
-import { CryptoType } from "../../utils/cryptos";
+import { CryptoType } from "../utils/cryptos";
 import { useQuery } from "react-query";
-import { Network } from "../../utils/networks";
+import { Network } from "../utils/networks";
 
 function CryptoItem({ data, network }: { data: CryptoType; network: Network }) {
   const { data: balance, isLoading } = useQuery({
