@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useSeed } from "../contexts/SeedContext";
 import * as bip39 from "bip39";
+import { encryptSeedPhrase } from "../utils/seed";
 
 type Props = {
   onBack: () => void;
   onContinue: () => void;
+  password: string;
   generate?: boolean;
 };
 
-function SeedStep({ onBack, onContinue, generate = false }: Props) {
+function SeedStep({ onBack, onContinue, password, generate = false }: Props) {
   const seed = useSeed();
 
   const [inputData, setInputData] = useState(
@@ -35,7 +37,9 @@ function SeedStep({ onBack, onContinue, generate = false }: Props) {
   };
 
   const handleOnContinue = () => {
-    seed.setSeed(inputData.map((i) => i.trim()).join(" "));
+    const seedString = inputData.map((i) => i.trim()).join(" ");
+    localStorage.setItem("seed", encryptSeedPhrase(seedString, password));
+    seed.setSeed(seedString);
     onContinue();
   };
 

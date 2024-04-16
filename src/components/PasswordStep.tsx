@@ -5,9 +5,10 @@ import { hashPassword } from "../utils/password";
 type Props = {
   onBack: () => void;
   onContinue: () => void;
+  setPassword: (password: string) => void;
 };
 
-function PasswordStep({ onBack, onContinue }: Props) {
+function PasswordStep({ onBack, onContinue, setPassword }: Props) {
   const [data, setData] = useState({
     password: "",
     confirm: "",
@@ -15,6 +16,7 @@ function PasswordStep({ onBack, onContinue }: Props) {
 
   const handleOnContinue = () => {
     localStorage.setItem("password", hashPassword(data.password));
+    setPassword(data.password);
     onContinue();
   };
 

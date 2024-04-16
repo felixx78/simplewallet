@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function CreateAndImport({ create = false }: { create?: boolean }) {
   const [steps, setSteps] = useState(0);
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -18,6 +19,7 @@ function CreateAndImport({ create = false }: { create?: boolean }) {
       <div className="border-border border-2 px-8 pt-6 pb-6 rounded-md min-w-[300px] max-w-[450px]">
         {steps === 0 && (
           <PasswordStep
+            setPassword={setPassword}
             onBack={() => navigate("/welcome")}
             onContinue={handleContinue}
           />
@@ -26,6 +28,7 @@ function CreateAndImport({ create = false }: { create?: boolean }) {
           <SeedStep
             generate={create}
             onBack={handleBack}
+            password={password}
             onContinue={() => navigate("/")}
           />
         )}
