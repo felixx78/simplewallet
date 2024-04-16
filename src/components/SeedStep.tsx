@@ -13,7 +13,7 @@ function SeedStep({ onBack, onContinue, generate = false }: Props) {
 
   const [inputData, setInputData] = useState(
     generate
-      ? bip39.generateMnemonic().split("")
+      ? bip39.generateMnemonic().split(" ")
       : Array.from({ length: 12 }, () => "")
   );
 
