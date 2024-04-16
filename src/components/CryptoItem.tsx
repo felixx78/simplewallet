@@ -1,13 +1,19 @@
 import { CryptoType } from "../utils/cryptos";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { Network } from "../utils/networks";
-import Skeleton from "react-loading-skeleton";
+import { SlRefresh } from "react-icons/sl";
 
 function CryptoItem({ data, network }: { data: CryptoType; network: Network }) {
-  const { data: balance, isLoading } = useQuery({
+  const { data: balance, isFetching } = useQuery({
     queryKey: [data.name, data.network],
     queryFn: () => data.getBalance(network.address),
   });
+
+  const queryClient = useQueryClient();
+
+  const refetchBalance = () => {
+    queryClient.invalidateQueries([data.name, data.network]);
+  };
 
   return (
     <div className="max-w-[400px] flex items-center justify-between">
@@ -29,7 +35,12 @@ function CryptoItem({ data, network }: { data: CryptoType; network: Network }) {
           </p>
         )}
       </div>
-      {isLoading ? <Skeleton width={80} height={25} /> : <p>{balance}</p>}
+      <div className="flex gap-4 items-center">
+        <p>{balance || "0.0000"}</p>
+        <button disabled={isFetching} onClick={refetchBalance}>
+          <SlRefresh className={isFetching ? "spin" : ""} size="20px" />
+        </button>
+      </div>
     </div>
   );
 }
