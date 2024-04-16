@@ -5,6 +5,7 @@ import { decryptSeedPhrase } from "../utils/seed";
 type SeedContextType = {
   seed: string;
   auth: (password: string) => void;
+  setSeed: (seed: string) => void;
 };
 
 const SeedContext = createContext<SeedContextType | undefined>(undefined);
@@ -21,7 +22,7 @@ export const SeedProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <SeedContext.Provider value={{ seed, auth }}>
+    <SeedContext.Provider value={{ seed, setSeed, auth }}>
       {children}
     </SeedContext.Provider>
   );
