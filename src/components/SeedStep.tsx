@@ -45,13 +45,15 @@ function SeedStep({ onBack, onContinue, password, generate = false }: Props) {
 
   return (
     <div>
-      <h1 className="text-2xl mb-6 text-center">Enter your 12 words</h1>
-      <div className="grid grid-cols-2 gap-4 mb-6">
+      <h1 className="sm:text-2xl text-xl mb-6 text-center">
+        Enter your 12 words
+      </h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
         {inputData.map((value, index) => (
           <div key={index} className="flex gap-2 items-center">
             <input
               onPaste={handleOnPaste}
-              className="text-copy bg-foreground px-4 py-2 w-[150px] outline-none"
+              className="text-copy bg-foreground px-4 py-2 w-full sm:w-[150px] outline-none"
               onChange={(e) => handleOnChange(e.target.value, index)}
               placeholder={`word #${index + 1}`}
               value={value}

@@ -22,8 +22,8 @@ function PasswordStep({ onBack, onContinue, setPassword }: Props) {
 
   return (
     <div>
-      <h1 className="text-2xl mb-2 text-center">Create password</h1>
-      <p className="mb-6 text-[14px] text-copy-lighter">
+      <h1 className="sm:text-2xl text-xl mb-2 text-center">Create password</h1>
+      <p className="mb-6 text-[14px] text-copy-lighter text-center">
         this password will store only in localstorage.
       </p>
       <div className="space-y-4 mb-6">

@@ -10,8 +10,10 @@ function Welcome() {
     <div className="flex items-center justify-center h-[70vh] flex-col gap-6">
       <Logo center />
       <div className="border-border border-2 px-8 pt-6 pb-10 rounded-md max-w-[450px]">
-        <h1 className="text-2xl mb-2 text-center">welcome to simplewallet</h1>
-        <p className="mb-6 text-[14px] text-copy-lighter">
+        <h1 className="text-xl sm:text-2xl mb-2 text-center">
+          welcome to simplewallet
+        </h1>
+        <p className="mb-6 text-[12px] sm:text-[14px] text-copy-lighter text-center">
           simplewallet is open source wallet, stores data encrypted in{" "}
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"

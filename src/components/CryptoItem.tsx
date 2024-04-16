@@ -11,7 +11,7 @@ function CryptoItem({ data, network }: { data: CryptoType; network: Network }) {
   if (isLoading) return <div className="">loading</div>;
 
   return (
-    <div className="w-[400px] flex items-center justify-between">
+    <div className="max-w-[400px] flex items-center justify-between">
       <div className="flex items-center">
         <div className="relative">
           <img className="mr-4" width={40} height={40} src={data.icon} alt="" />
