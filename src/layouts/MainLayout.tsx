@@ -23,7 +23,9 @@ function MainLayout() {
       style={{ fontFamily: "'Inter', sans-serif" }}
       className="bg-background min-h-screen text-copy-light px-3 sm:px-4 md:px-0"
     >
-      <Outlet />
+      <div className="max-w-[450px] mx-auto">
+        <Outlet />
+      </div>
     </main>
   );
 }
