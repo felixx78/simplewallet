@@ -1,14 +1,13 @@
 import { CryptoType } from "../utils/cryptos";
 import { useQuery } from "react-query";
 import { Network } from "../utils/networks";
+import Skeleton from "react-loading-skeleton";
 
 function CryptoItem({ data, network }: { data: CryptoType; network: Network }) {
   const { data: balance, isLoading } = useQuery({
     queryKey: [data.name, data.network],
     queryFn: () => data.getBalance(network.address),
   });
-
-  if (isLoading) return <div className="">loading</div>;
 
   return (
     <div className="max-w-[400px] flex items-center justify-between">
@@ -30,7 +29,7 @@ function CryptoItem({ data, network }: { data: CryptoType; network: Network }) {
           </p>
         )}
       </div>
-      <p>{balance}</p>
+      {isLoading ? <Skeleton width={80} height={25} /> : <p>{balance}</p>}
     </div>
   );
 }
