@@ -4,8 +4,8 @@ function MainLayout() {
   const seed = localStorage.getItem("seed");
   const location = useLocation();
 
-  if (!seed && location.pathname !== "/auth") {
-    return <Navigate to="/auth" />;
+  if (!seed && location.pathname !== "/welcome") {
+    return <Navigate to="/welcome" />;
   }
 
   return (
