@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import "typeface-inter";
 import { SeedProvider } from "./contexts/SeedContext.tsx";
 import "react-loading-skeleton/dist/skeleton.css";
-import { SkeletonTheme } from "react-loading-skeleton";
 
 const queryClient = new QueryClient();
 
@@ -16,9 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <MemoryRouter>
       <QueryClientProvider client={queryClient}>
         <SeedProvider>
-          <SkeletonTheme baseColor="#202020" highlightColor="#444">
-            <App />
-          </SkeletonTheme>
+          <App />
         </SeedProvider>
       </QueryClientProvider>
     </MemoryRouter>
