@@ -19,4 +19,13 @@ export default defineConfig({
       ],
     },
   },
+  build: {
+    rollupOptions: {
+      plugins: [
+        NodeGlobalsPolyfillPlugin({
+          buffer: true,
+        }),
+      ],
+    },
+  },
 });
