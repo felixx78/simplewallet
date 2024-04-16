@@ -8,7 +8,7 @@ export function encryptSeedPhrase(seed: string, password: string) {
 
 export function decryptSeedPhrase(password: string) {
   const encryptedSeed = localStorage.getItem("seed");
-  if (!encryptedSeed) return null;
+  if (!encryptedSeed) return "";
 
   const decryptedBytes = AES.decrypt(encryptedSeed, password);
   const decryptedSeed = decryptedBytes.toString(enc.Utf8);
