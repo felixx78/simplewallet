@@ -1,7 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { useWallet } from "../contexts/WalletContext";
 import Spinner from "./Spinner";
-import Logo from "./Logo";
 
 function RequireLog({ children }: { children: React.ReactNode }) {
   const wallet = useWallet();
