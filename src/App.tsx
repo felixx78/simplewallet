@@ -4,6 +4,7 @@ import MainLayout from "./layouts/MainLayout";
 import Welcome from "./pages/Welcome";
 import CreateAndImport from "./pages/CreateAndImport";
 import Login from "./pages/Login";
+import RequireLog from "./components/RequireLog";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           element={<CreateAndImport create={true} />}
         />
         <Route path="/login" element={<Login />} />
-        <Route index element={<Main />} />
+
+        <Route index element={<RequireLog children={<Main />} />} />
       </Route>
     </Routes>
   );

@@ -5,7 +5,7 @@ import "./index.css";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "typeface-inter";
-import { SeedProvider } from "./contexts/SeedContext.tsx";
+import { WalletProvider } from "./contexts/WalletContext.tsx";
 
 const queryClient = new QueryClient();
 
@@ -13,9 +13,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MemoryRouter>
       <QueryClientProvider client={queryClient}>
-        <SeedProvider>
+        <WalletProvider>
           <App />
-        </SeedProvider>
+        </WalletProvider>
       </QueryClientProvider>
     </MemoryRouter>
   </React.StrictMode>

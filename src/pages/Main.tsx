@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import cryptos from "../utils/cryptos";
 import CryptoItem from "../components/CryptoItem";
-import getNetworks, { Network } from "../utils/networks";
-import { useSeed } from "../contexts/SeedContext";
+import { useWallet } from "../contexts/WalletContext";
 import { LuPlus } from "react-icons/lu";
 import {
   HiOutlineArrowSmallUp,
@@ -11,20 +10,9 @@ import {
 import AddressItem from "../components/AddressItem";
 
 function Main() {
-  const seed = useSeed();
-
   const [mode, setMode] = useState<"balance" | "address">("balance");
 
-  const [networks, setNetworks] = useState<Network[] | undefined>();
-
-  useEffect(() => {
-    (async () => {
-      const newNetworks = await getNetworks(seed.seed);
-      setNetworks(newNetworks);
-    })();
-  }, [seed.seed]);
-
-  if (!networks) return <p>loading</p>;
+  const wallet = useWallet();
 
   const Actions = () => {
     return (
@@ -67,11 +55,11 @@ function Main() {
             <CryptoItem
               key={i.name + i.network}
               data={i}
-              network={networks.find((n) => n.name === i.network)!}
+              network={wallet.networks.find((n) => n.name === i.network)!}
             />
           ))}
         {mode === "address" &&
-          networks.map((network) => (
+          wallet.networks.map((network) => (
             <AddressItem key={network.name} data={network} />
           ))}
       </div>

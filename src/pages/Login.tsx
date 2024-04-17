@@ -1,28 +1,30 @@
 import { useState } from "react";
 import Logo from "../components/Logo";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import PasswordInput from "../components/PasswordInput";
-import { useSeed } from "../contexts/SeedContext";
+import { useWallet } from "../contexts/WalletContext";
+import SubmitButton from "../components/SubmitButton";
 
 function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
-
-  const seed = useSeed();
+  const wallet = useWallet();
 
   const handleUnlock = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (seed.auth(password)) {
-      navigate("/");
+    if (wallet.auth(password)) {
       return;
     }
 
     setPassword("");
     setError("Incorrect password");
   };
+
+  if (wallet.isLogged) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="flex items-center justify-center h-[70vh] flex-col gap-6">
@@ -40,13 +42,12 @@ function Login() {
 
           <div className="mb-6"></div>
 
-          <button
-            type="submit"
-            disabled={!password}
-            className="block w-full bg-border rounded-md py-2 disabled:bg-foreground"
+          <SubmitButton
+            isLoading={wallet.isLoading}
+            disabled={!password && wallet.isLoading}
           >
             Unlock
-          </button>
+          </SubmitButton>
         </form>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSeed } from "../contexts/SeedContext";
+import { useWallet } from "../contexts/WalletContext";
 import * as bip39 from "bip39";
 import { encryptSeedPhrase } from "../utils/seed";
 
@@ -11,7 +11,7 @@ type Props = {
 };
 
 function SeedStep({ onBack, onContinue, password, generate = false }: Props) {
-  const seed = useSeed();
+  const wallet = useWallet();
 
   const [inputData, setInputData] = useState(
     generate
@@ -39,7 +39,7 @@ function SeedStep({ onBack, onContinue, password, generate = false }: Props) {
   const handleOnContinue = () => {
     const seedString = inputData.map((i) => i.trim()).join(" ");
     localStorage.setItem("seed", encryptSeedPhrase(seedString, password));
-    seed.setSeed(seedString);
+    wallet.setSeed(seedString);
     onContinue();
   };
 
