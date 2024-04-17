@@ -6,6 +6,7 @@ import CreateAndImport from "./pages/CreateAndImport";
 import Login from "./pages/Login";
 import RequireLog from "./components/RequireLog";
 import Receive from "./pages/Receive";
+import SelectSend from "./pages/SelectSend";
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
         <Route
           path="/receive"
           element={<RequireLog children={<Receive />} />}
+        />
+        <Route
+          path="/send"
+          element={<RequireLog children={<SelectSend />} />}
         />
       </Route>
     </Routes>
