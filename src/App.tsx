@@ -5,6 +5,7 @@ import Welcome from "./pages/Welcome";
 import CreateAndImport from "./pages/CreateAndImport";
 import Login from "./pages/Login";
 import RequireLog from "./components/RequireLog";
+import Receive from "./pages/Receive";
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         <Route index element={<RequireLog children={<Main />} />} />
+        <Route
+          path="/receive"
+          element={<RequireLog children={<Receive />} />}
+        />
       </Route>
     </Routes>
   );
