@@ -20,14 +20,6 @@ function RequireLog({ children }: { children: React.ReactNode }) {
     return <Navigate to="/welcome" />;
   }
 
-  return (
-    <div>
-      <header className="pl-8 pt-4">
-        <Logo size="sm" />
-      </header>
-
-      <main>{children}</main>
-    </div>
-  );
+  return children;
 }
 export default RequireLog;
