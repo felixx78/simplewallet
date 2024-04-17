@@ -3,7 +3,13 @@ import { useQuery, useQueryClient } from "react-query";
 import { Network } from "../utils/networks";
 import { SlRefresh } from "react-icons/sl";
 
-function CryptoItem({ data, network }: { data: CryptoType; network: Network }) {
+type Props = {
+  data: CryptoType;
+  network: Network;
+  onClick?: () => void;
+};
+
+function CryptoItem({ data, network, onClick }: Props) {
   const { data: balance, isFetching } = useQuery({
     queryKey: [data.name, data.network],
     queryFn: () => data.getBalance(network.address),
@@ -16,7 +22,10 @@ function CryptoItem({ data, network }: { data: CryptoType; network: Network }) {
   };
 
   return (
-    <div className="max-w-[400px] flex items-center justify-between">
+    <div
+      onClick={onClick && onClick}
+      className={`${onClick ? "cursor-pointer" : ""} max-w-[400px] flex items-center justify-between`}
+    >
       <div className="flex items-center">
         <div className="relative">
           <img className="mr-4" width={40} height={40} src={data.icon} alt="" />
@@ -37,9 +46,11 @@ function CryptoItem({ data, network }: { data: CryptoType; network: Network }) {
       </div>
       <div className="flex gap-4 items-center">
         <p>{balance || "0.0000"}</p>
-        <button disabled={isFetching} onClick={refetchBalance}>
-          <SlRefresh className={isFetching ? "spin" : ""} size="20px" />
-        </button>
+        {!onClick && (
+          <button disabled={isFetching} onClick={refetchBalance}>
+            <SlRefresh className={isFetching ? "spin" : ""} size="20px" />
+          </button>
+        )}
       </div>
     </div>
   );
