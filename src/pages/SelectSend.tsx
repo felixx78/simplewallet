@@ -1,5 +1,4 @@
 import { HiOutlineArrowSmallLeft } from "react-icons/hi2";
-import AddressItem from "../components/AddressItem";
 import { useWallet } from "../contexts/WalletContext";
 import { useNavigate } from "react-router-dom";
 import cryptos from "../utils/cryptos";
