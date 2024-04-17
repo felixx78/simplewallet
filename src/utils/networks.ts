@@ -16,14 +16,6 @@ const getNetworks = async (seedPhrase: string) => {
   const wallet = generateWallet(seedPhrase, "m/44'/60'/0'/0/0");
 
   networks.push({
-    name: "Ethereum Mainnet",
-    icon: "/eth.jpg",
-    address: wallet.address,
-    publicKey: wallet.publicKey,
-    privateKey: wallet.privateKey,
-  });
-
-  networks.push({
     name: "BNB Chain",
     icon: "/bnb.svg",
     address: wallet.address,
@@ -43,6 +35,14 @@ const getNetworks = async (seedPhrase: string) => {
     address: tonWallet.address.toString(),
     publicKey: tonWallet.publicKey.toString(),
     privateKey: wallet.privateKey.toString(),
+  });
+
+  networks.push({
+    name: "Ethereum Mainnet",
+    icon: "/eth.jpg",
+    address: wallet.address,
+    publicKey: wallet.publicKey,
+    privateKey: wallet.privateKey,
   });
 
   return networks;
