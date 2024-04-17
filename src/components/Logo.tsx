@@ -1,10 +1,23 @@
-function Logo({ center }: { center?: boolean }) {
+function Logo({
+  center,
+  size = "lg",
+}: {
+  center?: boolean;
+  size?: "sm" | "lg";
+}) {
   return (
     <div
       className={`flex gap-4 items-center ${center ? "justify-center" : ""}`}
     >
-      <img width={50} height={30} src="/icon.svg" alt="" />
-      <p className="text-xl font-medium">simplewallet</p>
+      <img
+        width={size === "lg" ? 50 : 30}
+        height={size === "lg" ? 30 : 10}
+        src="/icon.svg"
+        alt=""
+      />
+      <p className={`${size === "lg" ? "text-xl" : ""} font-medium`}>
+        simplewallet
+      </p>
     </div>
   );
 }
