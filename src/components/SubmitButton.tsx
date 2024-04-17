@@ -12,7 +12,7 @@ function SubmitButton({
       {...props}
     >
       {children}
-      {isLoading && <Spinner w={8} h={8} />}
+      {isLoading && <Spinner size="sm" />}
     </button>
   );
 }
