@@ -12,7 +12,7 @@ type Props = {
 function CryptoItem({ data, network, onClick }: Props) {
   const { data: balance, isFetching } = useQuery({
     queryKey: [data.name, data.network],
-    queryFn: () => data.getBalance(network.address),
+    queryFn: () => network.getBalance(data.contactAddress),
   });
 
   const queryClient = useQueryClient();

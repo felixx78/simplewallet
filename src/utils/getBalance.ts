@@ -15,20 +15,26 @@ const ABI = [
 
 const getBalance = async (
   web3Api: string,
-  contactAddress: string,
-  address: string
+  address: string,
+  contactAddress?: string
 ) => {
   try {
     const web3 = new Web3(web3Api);
 
-    const contract = new web3.eth.Contract(ABI, contactAddress);
+    let balance = "";
 
-    const balance: any = await contract.methods.balanceOf(address).call();
+    if (contactAddress) {
+      const contract = new web3.eth.Contract(ABI, contactAddress);
+      balance = await contract.methods.balanceOf(address).call();
+    } else {
+      balance = (await web3.eth.getBalance(address)).toString();
+    }
 
     return new BigNumber(balance)
       .dividedBy(new BigNumber(10).pow(18))
       .toFixed(4);
   } catch (e) {
+    console.log(e);
     return "error";
   }
 };
