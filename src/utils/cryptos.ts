@@ -17,6 +17,11 @@ const cryptos: CryptoType[] = [
     contactAddress: "0x55d398326f99059ff775485246999027b3197955",
   },
   {
+    name: "BNB",
+    network: "BNB Chain",
+    icon: "/bnb.svg",
+  },
+  {
     name: "Ton",
     network: "The Open Network",
     icon: "/ton.svg",
